@@ -1,11 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-
-</body>
-</html>
+<h4 class="text-center">Student Management</h4>
+<hr>
+<br>
+<ul class="nav flex-column">
+  <li class="nav-item">
+    <a class="nav-link text-white" href="index.php?page=register">
+      Resister
+    </a>
+  </li>
+    
+  <li class="nav-item">
+    <a class="nav-link text-white" href="index.php?page=list">
+      Student List
+    </a>
+  </li>
+</ul>

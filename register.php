@@ -61,7 +61,7 @@
             <label for="address" class="form-label fw-bold">Address</label>
             <textarea name="address" id="address" rows="3" class="form-control"></textarea>
           </div>
-
+<!-- 
           <div class="mb-3">
             <label for="country" class="form-label fw-bold">Country</label>
             <input type="text" name="country" id="country" class="form-control">
@@ -84,7 +84,7 @@
             <label for="phoneNumber" class="form-label fw-bold">Phone Number</label>
             <input type="text" name="phoneNumber" id="phoneNumber" class="form-control">
             <small class="text-danger"></small>
-          </div>
+          </div> -->
 
 
         </form>
