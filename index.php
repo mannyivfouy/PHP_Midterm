@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -17,11 +18,11 @@
         require_once('sidebar.php');
         ?>
       </div>
-  
+
       <div class="col-10 p-4">
         <?php
         $page = $_GET['page'] ?? 'register';
-  
+
         if ($page == 'list') {
           include('student-list.php');
         } else {
@@ -32,4 +33,5 @@
     </div>
   </div>
 </body>
+
 </html>
