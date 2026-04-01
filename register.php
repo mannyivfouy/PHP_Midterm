@@ -1,88 +1,85 @@
-<div class="container-fluid">
-  <div class="row justify-content-center">
+<?php
+if (!isset($_SESSION['students'])) {
+  $_SESSION['students'] = [];
+}
 
-    <!-- Add column -->
-    <div class="col-md-6 ">
+$firstName = $lastName = $email = $phone = "";
+$gender = "Male";
+$errors = [];
 
-      <!-- Card -->
-      <div class="card shadow-sm mt-4">
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-        <!-- Make scrollable -->
-        <div class="card-body" style="max-height: 90vh; overflow-y: auto;">
+  $firstName = $_POST['firstName'];
+  $lastName = $_POST['lastName'];
+  $email = $_POST['email'];
+  $phone = $_POST['phone'];
+  $gender = $_POST['gender'];
 
-          <form method="post">
+  if (!preg_match("/^[a-zA-Z]{2,}$/", $firstName)) {
+    $errors['firstName'] = "Only letters (min 2)";
+  }
 
-            <div class="mb-3">
-              <label class="form-label fw-bold">First Name</label>
-              <input type="text" name="firstname" class="form-control">
-            </div>
+  if (!preg_match("/^[a-zA-Z]{2,}$/", $lastName)) {
+    $errors['lastName'] = "Only letters (min 2)";
+  }
 
-            <div class="mb-3">
-              <label class="form-label fw-bold">Last Name</label>
-              <input type="text" name="lastname" class="form-control">
-            </div>
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $errors['email'] = "Invalid email";
+  }
 
-            <div class="mb-3">
-              <label class="form-label fw-bold">Email</label>
-              <input type="text" name="email" class="form-control">
-            </div>
+  if (!preg_match("/^[0-9]{8,15}$/", $phone)) {
+    $errors['phone'] = "Invalid phone";
+  }
 
-            <div class="mb-3">
-              <label class="form-label fw-bold">Phone</label>
-              <input type="text" name="phoneNumber" class="form-control">
-            </div>
+  if (empty($errors)) {
+    $_SESSION['students'][] = [
+      "firstName" => $firstName,
+      "lastName" => $lastName,
+      "email" => $email,
+      "phone" => $phone,
+      "gender" => $gender
+    ];
 
-            <div class="mb-3">
-              <label class="form-label fw-bold d-block">Gender</label>
+    $firstName = $lastName = $email = $phone = "";
+  }
+}
+?>
 
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="gender" value="Male">
-                <label class="form-check-label">Male</label>
-              </div>
+<div class="card p-4 shadow">
+  <h4>Register Student</h4>
 
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="gender" value="Female">
-                <label class="form-check-label">Female</label>
-              </div>
-            </div>
+  <form method="POST">
 
-            <div class="mb-3">
-              <label class="form-label fw-bold">Date of Birth</label>
-              <input type="date" name="dob" class="form-control">
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label fw-bold">Address</label>
-              <textarea name="address" class="form-control"></textarea>
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label fw-bold">Country</label>
-              <input type="text" name="country" class="form-control">
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label fw-bold">City</label>
-              <input type="text" name="city" class="form-control">
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label fw-bold">Pin Code</label>
-              <input type="text" name="pincode" id="pincode" class="form-control">
-            </div>
-
-            <div class="mt-3">
-              <button class="btn btn-danger">
-                Reset
-              </button>
-  
-              <button class="btn btn-primary">
-                Submit
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
+    <div class="mb-3">
+      <label>First Name</label>
+      <input type="text" name="firstName" class="form-control" value="<?= $firstName ?>">
+      <small class="text-danger"><?= $errors['firstName'] ?? "" ?></small>
     </div>
-  </div>
+
+    <div class="mb-3">
+      <label>Last Name</label>
+      <input type="text" name="lastName" class="form-control" value="<?= $lastName ?>">
+      <small class="text-danger"><?= $errors['lastName'] ?? "" ?></small>
+    </div>
+
+    <div class="mb-3">
+      <label>Email</label>
+      <input type="text" name="email" class="form-control" value="<?= $email ?>">
+      <small class="text-danger"><?= $errors['email'] ?? "" ?></small>
+    </div>
+
+    <div class="mb-3">
+      <label>Phone</label>
+      <input type="text" name="phone" class="form-control" value="<?= $phone ?>">
+      <small class="text-danger"><?= $errors['phone'] ?? "" ?></small>
+    </div>
+
+    <div class="mb-3">
+      <label>Gender</label><br>
+      <input type="radio" name="gender" value="Male" <?= $gender == "Male" ? "checked" : "" ?>> Male
+      <input type="radio" name="gender" value="Female" <?= $gender == "Female" ? "checked" : "" ?>> Female
+    </div>
+
+    <button class="btn btn-primary">Register</button>
+  </form>
 </div>
