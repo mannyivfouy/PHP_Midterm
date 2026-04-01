@@ -1,16 +1,20 @@
-<h4 class="text-center">Student Management</h4>
-<hr>
-<br>
-<ul class="nav flex-column">
-  <li class="nav-item">
-    <a class="nav-link text-white" href="index.php?page=register">
-      <i class="bi bi-person-lines-fill me-2"></i> Register
-    </a>
-  </li>
+<?php $page = $_GET['page'] ?? 'register'; ?>
 
-  <li class="nav-item">
-    <a class="nav-link text-white" href="index.php?page=list">
-      <i class="bi bi-card-list me-2"></i> Student List
-    </a>
-  </li>
-</ul>
+<div class="mb-5">
+  <h4 class="text-center mb-4">Student Management</h4>
+  <hr>
+</div>
+
+<div class="mb-2">
+  <a href="?page=register" class="d-block p-2 text-decoration-none 
+     <?= $page == 'register' ? 'bg-primary text-white rounded' : 'text-secondary' ?>">
+    <i class="bi bi-person-plus me-2"></i> Register Student
+  </a>
+</div>
+
+<div class="mb-2">
+  <a href="?page=list" class="d-block p-2 text-decoration-none 
+     <?= $page == 'list' ? 'bg-primary text-white rounded' : 'text-secondary' ?>">
+    <i class="bi bi-table me-2"></i> Student List
+  </a>
+</div>
