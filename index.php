@@ -29,7 +29,6 @@
           include('register.php');
         }
         ?>
-
       </div>
     </div>
   </div>
