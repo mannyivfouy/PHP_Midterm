@@ -1,4 +1,7 @@
 <?php
+
+$success = false;
+
 if (!isset($_SESSION['students'])) {
     $_SESSION['students'] = [];
 }
@@ -42,10 +45,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             "dob" => $dob
         ];
 
+        $success = true;
+
         $firstName = $lastName = $email = $phone = $dob = "";
     }
 }
 ?>
+
+<?php if($success): ?>
+    <div class="alert alert-success text-center" role="alert">
+        Student Registration Successfully
+    </div>
+<?php endif; ?>
 
 <div class="card p-4 shadow">
     <h4 class="mb-4 fw-bold">Register Student</h4>
