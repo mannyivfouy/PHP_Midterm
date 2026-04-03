@@ -100,11 +100,9 @@ if (isset($_POST['submit'])) {
         </div>
 
         <div class="mb-3">
-            <label for="gender" class="form-label fw-medium">Gender</label>
-            <select name="gender" id="gender" class="form-control">
-                <option value="male" <?= $gender === 'male' ? 'selected' : '' ?>>Male</option>
-                <option value="female" <?= $gender === 'female' ? 'selected' : '' ?>>Female</option>
-            </select>
+            <label for="gender" class="form-label fw-medium">Gender</label> <br>
+            <input type="radio" name="gender" id="gender" value="male" checked <?= $gender ?>> Male
+            <input type="radio" name="gender" id="gender" value="female" class="ms-3" <?= $gender ?>> Female
             <small class="text-danger"><?= $errors['gender'] ?? "" ?></small>
         </div>
 
