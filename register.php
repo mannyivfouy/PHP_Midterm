@@ -115,7 +115,7 @@ if (isset($_POST['submit'])) {
         <div class="mb-3">
             <label for="address" class="form-label fw-bold"><span class="text-danger fw-bold">* </span>Address</label>
             <textarea name="address" id="address" rows="5" class="form-control"><?= $address ?></textarea>
-            <small class="text-danger"><?= $errors['address'] ?? ""?></small>
+            <small class="text-danger"><?= $errors['address'] ?? "" ?></small>
         </div>
 
         <div class="mt-5">
