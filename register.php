@@ -61,7 +61,7 @@ if (isset($_POST['submit'])) {
 }
 ?>
 
-<div class="container-fluid position-relative">
+<div class="overflow-y-auto overflow-x-hidden position-absolute top-0 start-0 end-0 bottom-0 p-3">
     <h3>Student Registration</h3>
     <hr>
 
