@@ -1,0 +1,24 @@
+[
+    {
+        "firstName": "Risa",
+        "lastName": "Sawyer",
+        "email": "mijaqu@mailinator.com",
+        "phone": "0928475894",
+        "gender": "male",
+        "dateOfBirth": "2023-05-13",
+        "address": "Dolor consequuntur d",
+        "country": "Necessitatibus vero",
+        "city": "In distinctio Occae",
+        "state": "In dolor vel volupta",
+        "pinCode": "0012",
+        "image": "",
+        "hobbies": [
+            "Singing",
+            "Sketching",
+            "Gaming"
+        ],
+        "hobbyOther": "",
+        "qualification": [],
+        "submittedAt": "2026-04-04 06:18:12"
+    }
+]

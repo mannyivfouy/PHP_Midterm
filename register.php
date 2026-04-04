@@ -9,15 +9,31 @@ $phone = "";
 $gender = "male";
 $dateOfBirth = "";
 $address = "";
+$country = "";
+$city = "";
+$state = "";
+$pinCode = "";
+$image = "";
+$hobbies = [];
+$hobbyOtherText = "";
+$qualification = [];
 
 if (isset($_POST['submit'])) {
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
-    $gender = $_POST['gender'];
-    $dateOfBirth = $_POST['dateOfBirth'];
-    $address = $_POST['address'];
+    $firstName = trim($_POST['firstName'] ?? '');
+    $lastName = trim($_POST['lastName'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $phone = trim($_POST['phone'] ?? '');
+    $gender = trim($_POST['gender'] ?? 'male');
+    $dateOfBirth = trim($_POST['dateOfBirth'] ?? '');
+    $address = trim($_POST['address'] ?? '');
+    $country = trim($_POST['country'] ?? '');
+    $city = trim($_POST['city'] ?? '');
+    $state = trim($_POST['state'] ?? '');
+    $pinCode = trim($_POST['pinCode'] ?? '');
+    $image = $_FILES['image']['name'] ?? '';
+    $hobbies = $_POST['hobbies'] ?? [];
+    $hobbyOtherText = trim($_POST['hobbyOtherText'] ?? '');
+    $qualification = $_POST['qualification'] ?? [];
 
     if (!preg_match("/^[A-Za-z]{2,20}$/", $firstName)) {
         $errors['firstName'] = "First name must be 2-20 letters only";
@@ -47,16 +63,63 @@ if (isset($_POST['submit'])) {
         $errors['address'] = "Address is required";
     }
 
+    if (empty($country)) {
+        $errors['country'] = "Country is required";
+    }
+
+    if (empty($city)) {
+        $errors['city'] = "City is required";
+    }
+
+    if (empty($state)) {
+        $errors['state'] = "State is required";
+    }
+
+    if (!preg_match("/^[0-9]{4,10}$/", $pinCode)) {
+        $errors['pinCode'] = "Pin Code must be 4-10 digits only";
+    }
+
     if (empty($errors)) {
         $success = true;
 
-        $firstName = "";
-        $lastName = "";
-        $email = "";
-        $phone = "";
-        $gender = "male";
-        $dateOfBirth = "";
-        $address = "";
+        // Build data object
+        $data = [
+            'firstName' => $firstName,
+            'lastName' => $lastName,
+            'email' => $email,
+            'phone' => $phone,
+            'gender' => $gender,
+            'dateOfBirth' => $dateOfBirth,
+            'address' => $address,
+            'country' => $country,
+            'city' => $city,
+            'state' => $state,
+            'pinCode' => $pinCode,
+            'image' => $image,
+            'hobbies' => $hobbies,
+            'hobbyOther' => $hobbyOtherText,
+            'qualification' => $qualification,
+        ];
+
+        // Load existing data
+        $file = 'students.json';
+        $existing = [];
+
+        if (file_exists($file)) {
+            $existing = json_decode(file_get_contents($file), true) ?? [];
+        }
+
+        // Append and save
+        $existing[] = $data;
+        file_put_contents($file, json_encode($existing, JSON_PRETTY_PRINT));
+
+        // Reset all fields
+        $firstName = $lastName = $email = $phone = '';
+        $dateOfBirth = $address = $country = $city = '';
+        $state = $pinCode = $image = $hobbyOtherText = '';
+        $gender = 'male';
+        $hobbies = [];
+        $qualification = [];
     }
 }
 ?>
@@ -71,7 +134,7 @@ if (isset($_POST['submit'])) {
         </div>
     <?php endif; ?>
 
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="firstName" class="form-label fw-bold"><span class="text-danger fw-bold">* </span>First
                 Name</label>
@@ -89,34 +152,128 @@ if (isset($_POST['submit'])) {
         <div class="mb-3">
             <label for="email" class="form-label fw-bold"><span class="text-danger fw-bold">* </span>Email</label>
             <input type="text" name="email" id="email" class="form-control" value="<?= $email ?>">
-            <small class="text-danger"><?= $errors['email'] ?? "" ?></small>
+            <small class="text-danger fw-medium"><?= $errors['email'] ?? "" ?></small>
         </div>
 
         <div class="mb-3">
             <label for="phone" class="form-label fw-bold"><span class="text-danger fw-bold">* </span>Phone
                 Number</label>
             <input type="text" name="phone" id="phone" class="form-control" value="<?= $phone ?>">
-            <small class="text-danger"><?= $errors['phone'] ?? "" ?></small>
+            <small class="text-danger fw-medium"><?= $errors['phone'] ?? "" ?></small>
         </div>
 
         <div class="mb-3">
             <label for="gender" class="form-label fw-medium">Gender</label> <br>
-            <input type="radio" name="gender" id="gender" value="male" checked <?= $gender ?>> Male
-            <input type="radio" name="gender" id="gender" value="female" class="ms-3" <?= $gender ?>> Female
-            <small class="text-danger"><?= $errors['gender'] ?? "" ?></small>
+            <input type="radio" value="male" <?= $gender === 'male' ? 'checked' : '' ?>> Male
+            <input type="radio" value="female" <?= $gender === 'female' ? 'checked' : '' ?>> Female
+            <small class="text-danger fw-medium"><?= $errors['gender'] ?? "" ?></small>
         </div>
 
         <div class="mb-3">
             <label for="dateOfBirth" class="form-label fw-bold"><span class="text-danger fw-bold">* </span>Date of Birth</label>
             <input type="date" name="dateOfBirth" id="dateOfBirth" class="form-control" value="<?= $dateOfBirth ?>">
-            <small class="text-danger"><?= $errors['dateOfBirth'] ?? "" ?></small>
+            <small class="text-danger fw-medium"><?= $errors['dateOfBirth'] ?? "" ?></small>
         </div>
 
         <div class="mb-3">
             <label for="address" class="form-label fw-bold"><span class="text-danger fw-bold">* </span>Address</label>
             <textarea name="address" id="address" rows="5" class="form-control"><?= $address ?></textarea>
-            <small class="text-danger"><?= $errors['address'] ?? "" ?></small>
+            <small class="text-danger fw-medium"><?= $errors['address'] ?? "" ?></small>
         </div>
+
+        <div class="mb-3">
+            <label for="country" class="form-label fw-bold"><span class="text-danger fw-bold">* </span>Country</label>
+            <input type="text" name="country" id="country" class="form-control" value="<?= $country ?>">
+            <small class="text-danger fw-medium"><?= $errors['country'] ?? "" ?></small>
+        </div>
+
+        <div class="mb-3">
+            <label for="city" class="form-label fw-bold"><span class="text-danger fw-bold">* </span>City</label>
+            <input type="text" name="city" id="city" class="form-control" value="<?= $city ?>">
+            <small class="text-danger fw-medium"><?= $errors['city'] ?? "" ?></small>
+        </div>
+
+        <div class="mb-3">
+            <label for="state" class="form-label fw-bold"><span class="text-danger fw-bold">* </span>State</label>
+            <input type="text" name="state" id="state" class="form-control" value="<?= $state ?>">
+            <small class="text-danger fw-medium"><?= $errors['state'] ?? "" ?></small>
+        </div>
+
+        <div class="mb-3">
+            <label for="pinCode" class="form-label fw-bold"><span class="text-danger fw-bold">* </span>Pin Code</label>
+            <input type="text" name="pinCode" id="pinCode" class="form-control" value="<?= $pinCode ?>">
+            <small class="text-danger fw-medium"><?= $errors['pinCode'] ?? "" ?></small>
+        </div>
+
+        <div class="mb-3">
+            <label for="image" class="form-label fw-bold"><span class="text-danger fw-bold"></span>Image</label>
+            <input type="file" name="image" id="image" class="form-control">
+            <small class="text-danger fw-medium"></small>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-bold">Hobbies</label>
+
+            <div>
+                <div class="form-check form-check-inline">
+                    <input type="checkbox" name="hobbies[]" id="hobbyDrawing" value="Drawing" class="form-check-input"
+                        <?= in_array('Drawing', $hobbies) ? 'checked' : '' ?>>
+                    <label class="form-check-label" for="hobbyDrawing">Drawing</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input type="checkbox" name="hobbies[]" id="hobbySinging" value="Singing" class="form-check-input"
+                        <?= in_array('Singing', $hobbies) ? 'checked' : '' ?>>
+                    <label class="form-check-label" for="hobbySinging">Singing</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input type="checkbox" name="hobbies[]" id="hobbySketching" value="Sketching"
+                           class="form-check-input"
+                        <?= in_array('Sketching', $hobbies) ? 'checked' : '' ?>>
+                    <label class="form-check-label" for="hobbySketching">Sketching</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input type="checkbox" name="hobbies[]" id="hobbyGaming" value="Gaming" class="form-check-input"
+                        <?= in_array('Gaming', $hobbies) ? 'checked' : '' ?>>
+                    <label class="form-check-label" for="hobbyGaming">Gaming</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input type="checkbox" name="hobbies[]" id="hobbyOther" value="Other" class="form-check-input"
+                        <?= in_array('Other', $hobbies) ? 'checked' : '' ?>
+                           onclick="document.getElementById('otherHobbyWrapper').style.display = this.checked ? 'block' : 'none'">
+                    <label class="form-check-label" for="hobbyOther">Other</label>
+                </div>
+            </div>
+
+            <!-- Keep visible and value if Other was checked on failed submit -->
+            <div id="otherHobbyWrapper" style="display: <?= in_array('Other', $hobbies) ? 'block' : 'none' ?>;"
+                 class="mt-2">
+                <input type="text" name="hobbyOtherText" id="hobbyOtherText" class="form-control"
+                       placeholder="Please specify your hobby"
+                       value="<?= htmlspecialchars($hobbyOtherText ?? '') ?>">
+            </div>
+
+            <small class="text-danger fw-medium"></small>
+        </div>
+
+        <div class="mb-3">
+            <label for="qualification" class="form-label fw-bold">Qualification</label>
+            <div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input">
+                    <label for="">High School</label>
+                </div>
+
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input">
+                    <label for="">Higher School</label>
+                </div>
+            </div>
+        </div>
+
 
         <div class="mt-5">
             <button class="btn btn-danger me-2" type="reset" name="reset">
