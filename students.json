@@ -20,5 +20,47 @@
         "hobbyOther": "",
         "qualification": [],
         "submittedAt": "2026-04-04 06:18:12"
+    },
+    {
+        "firstName": "Tanner",
+        "lastName": "Hester",
+        "email": "milo@mailinator.com",
+        "phone": "094848393",
+        "gender": "male",
+        "dateOfBirth": "1971-03-05",
+        "address": "Voluptatem nemo omni",
+        "country": "Eu veniam nobis nem",
+        "city": "Sit ut minima eaque",
+        "state": "Ratione eiusmod amet",
+        "pinCode": "0938",
+        "image": "",
+        "hobbies": [
+            "Singing",
+            "Gaming",
+            "Other"
+        ],
+        "hobbyOther": "Qui laboriosam enim",
+        "qualification": []
+    },
+    {
+        "firstName": "Clinton",
+        "lastName": "Sears",
+        "email": "harynebuf@mailinator.com",
+        "phone": "099182398",
+        "gender": "male",
+        "dateOfBirth": "2005-10-15",
+        "address": "Quidem excepteur per",
+        "country": "Dolore saepe volupta",
+        "city": "Tempore dolore sint",
+        "state": "In aperiam enim aliq",
+        "pinCode": "0912",
+        "image": "",
+        "hobbies": [
+            "Drawing",
+            "Singing",
+            "Sketching"
+        ],
+        "hobbyOther": "",
+        "qualification": []
     }
 ]
