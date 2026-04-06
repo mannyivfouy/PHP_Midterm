@@ -17,6 +17,7 @@ $image = "";
 $hobbies = [];
 $hobbyOtherText = "";
 $qualification = [];
+$course = [];
 
 if (isset($_POST['submit'])) {
     $firstName = trim($_POST['firstName'] ?? '');
@@ -34,6 +35,7 @@ if (isset($_POST['submit'])) {
     $hobbies = $_POST['hobbies'] ?? [];
     $hobbyOtherText = trim($_POST['hobbyOtherText'] ?? '');
     $qualification = $_POST['qualification'] ?? [];
+    $course = $_POST['course'] ?? '';
 
     if (!preg_match("/^[A-Za-z]{2,20}$/", $firstName)) {
         $errors['firstName'] = "First name must be 2-20 letters only";
@@ -43,7 +45,7 @@ if (isset($_POST['submit'])) {
         $errors['lastName'] = "Last name must be 2-20 letters only";
     }
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    if (!preg_match("/^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/", $email)) {
         $errors['email'] = "Please enter a valid email address";
     }
 
@@ -82,7 +84,6 @@ if (isset($_POST['submit'])) {
     if (empty($errors)) {
         $success = true;
 
-        // Build data object
         $data = [
             'firstName' => $firstName,
             'lastName' => $lastName,
@@ -99,9 +100,9 @@ if (isset($_POST['submit'])) {
             'hobbies' => $hobbies,
             'hobbyOther' => $hobbyOtherText,
             'qualification' => $qualification,
+            'course' => $course,
         ];
 
-        // Load existing data
         $file = 'students.json';
         $existing = [];
 
@@ -109,11 +110,9 @@ if (isset($_POST['submit'])) {
             $existing = json_decode(file_get_contents($file), true) ?? [];
         }
 
-        // Append and save
         $existing[] = $data;
         file_put_contents($file, json_encode($existing, JSON_PRETTY_PRINT));
 
-        // Reset all fields
         $firstName = $lastName = $email = $phone = '';
         $dateOfBirth = $address = $country = $city = '';
         $state = $pinCode = $image = $hobbyOtherText = '';
@@ -164,8 +163,8 @@ if (isset($_POST['submit'])) {
 
         <div class="mb-3">
             <label for="gender" class="form-label fw-medium">Gender</label> <br>
-            <input type="radio" value="male" <?= $gender === 'male' ? 'checked' : '' ?>> Male
-            <input type="radio" value="female" <?= $gender === 'female' ? 'checked' : '' ?>> Female
+            <input type="radio" name="gender" value="male" <?= $gender === 'male' ? 'checked' : '' ?>> Male
+            <input type="radio" name="gender" value="female" <?= $gender === 'female' ? 'checked' : '' ?>> Female
             <small class="text-danger fw-medium"><?= $errors['gender'] ?? "" ?></small>
         </div>
 
@@ -248,7 +247,6 @@ if (isset($_POST['submit'])) {
                 </div>
             </div>
 
-            <!-- Keep visible and value if Other was checked on failed submit -->
             <div id="otherHobbyWrapper" style="display: <?= in_array('Other', $hobbies) ? 'block' : 'none' ?>;"
                  class="mt-2">
                 <input type="text" name="hobbyOtherText" id="hobbyOtherText" class="form-control"
@@ -263,13 +261,86 @@ if (isset($_POST['submit'])) {
             <label for="qualification" class="form-label fw-bold">Qualification</label>
             <div>
                 <div class="form-check">
-                    <input type="checkbox" class="form-check-input">
-                    <label for="">High School</label>
+                    <input type="checkbox" class="form-check-input" name="qualification[]"
+                           value="High School (10th)" <?= in_array('High School (10th)', $qualification) ? 'checked' : '' ?>>
+                    <label for="High School (10th)">High School (10th)</label>
                 </div>
 
                 <div class="form-check">
-                    <input type="checkbox" class="form-check-input">
-                    <label for="">Higher School</label>
+                    <input type="checkbox" class="form-check-input" name="qualification[]"
+                           value="Higher School (12th)" <?= in_array('Higher School (12th)', $qualification) ? 'checked' : '' ?>>
+                    <label for="Higher School (12th)">Higher School (12th)</label>
+                </div>
+
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="qualification[]"
+                           value="Graduation (Bachelor)" <?= in_array('Graduation (Bachelor)', $qualification) ? 'checked' : '' ?>>
+                    <label for="Graduation (Bachelor)">Graduation (Bachelor)</label>
+                </div>
+
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="qualification[]"
+                           value="Post Graduation (Master)" <?= in_array('Post Graduation (Master)', $qualification) ? 'checked' : '' ?>>
+                    <label for="Post Graduation (Master)">Post Graduation (Master)</label>
+                </div>
+
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="qualification[]"
+                           value="PHD" <?= in_array('PHD', $qualification) ? 'checked' : '' ?>>
+                    <label for="PHD">PHD</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-bold">Course Apply For</label>
+            <div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="course" id="course_bca"
+                           value="BCA(Bachelor of Computer Applications)" <?= $course === 'BCA(Bachelor of Computer Applications)' ? 'checked' : '' ?>>
+                    <label class="form-check-label" for="course_bca">BCA(Bachelor of Computer Applications)</label>
+                </div>
+
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="course" id="course_bcom"
+                           value="B.Com(Bachelor of Commerce)" <?= $course === 'B.Com(Bachelor of Commerce)' ? 'checked' : '' ?>>
+                    <label class="form-check-label" for="course_bcom">B.Com(Bachelor of Commerce)</label>
+                </div>
+
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="course" id="course_bsc"
+                           value="B.Sc(Bachelor of Science)" <?= $course === 'B.Sc(Bachelor of Science)' ? 'checked' : '' ?>>
+                    <label class="form-check-label" for="course_bsc">B.Sc(Bachelor of Science)</label>
+                </div>
+
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="course" id="course_ba"
+                           value="BA(Bachelor of Arts)" <?= $course === 'BA(Bachelor of Arts)' ? 'checked' : '' ?>>
+                    <label class="form-check-label" for="course_ba">BA(Bachelor of Arts)</label>
+                </div>
+
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="course" id="course_mca"
+                           value="MCA(Master of Computer Applications)" <?= $course === 'MCA(Master of Computer Applications)' ? 'checked' : '' ?>>
+                    <label class="form-check-label" for="course_mca">MCA(Master of Computer Applications)</label>
+                </div>
+
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="course" id="course_mcom"
+                           value="M.Com(Master of Commerce)" <?= $course === 'M.Com(Master of Commerce)' ? 'checked' : '' ?>>
+                    <label class="form-check-label" for="course_mcom">M.Com(Master of Commerce)</label>
+                </div>
+
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="course" id="course_msc"
+                           value="M.Sc(Master of Science)" <?= $course === 'M.Sc(Master of Science)' ? 'checked' : '' ?>>
+                    <label class="form-check-label" for="course_msc">M.Sc(Master of Science)</label>
+                </div>
+
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="course" id="course_ma"
+                           value="MA(Master of Arts)" <?= $course === 'MA(Master of Arts)' ? 'checked' : '' ?>>
+                    <label class="form-check-label" for="course_ma">MA(Master of Arts)</label>
                 </div>
             </div>
         </div>
