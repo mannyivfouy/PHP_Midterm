@@ -182,5 +182,30 @@
             "Graduation (Bachelor)"
         ],
         "course": "MCA(Master of Computer Applications)"
+    },
+    {
+        "firstName": "Blake",
+        "lastName": "Maddox",
+        "email": "sokobuhi@mailinator.com",
+        "phone": "092161702",
+        "gender": "male",
+        "dateOfBirth": "1986-11-24",
+        "address": "Quis ut ipsum dolor",
+        "country": "Enim adipisicing et",
+        "city": "Sunt rerum cupiditat",
+        "state": "Quibusdam vel vero e",
+        "pinCode": "0012",
+        "image": "",
+        "hobbies": [
+            "Singing",
+            "Sketching",
+            "Other"
+        ],
+        "hobbyOther": "Et ipsum aut consec",
+        "qualification": [
+            "Post Graduation (Master)",
+            "PHD"
+        ],
+        "course": "B.Com(Bachelor of Commerce)"
     }
 ]

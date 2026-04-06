@@ -60,14 +60,13 @@ $students = json_decode($jsonFile, true) ?? [];
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
             </div>
 
         </div>
     </div>
 </div>
 
-<!-- JavaScript -->
 <script>
     const students = <?= json_encode($students) ?>;
 
@@ -140,7 +139,10 @@ $students = json_decode($jsonFile, true) ?? [];
                     <small class="text-muted">Qualification</small>
                     <p class="fw-bold mb-0">${s.qualification.length ? s.qualification.join(', ') : 'None'}</p>
                 </div>
-
+                <div class="col-12">
+                    <small class="text-muted">Course Apply For</small>
+                    <p class="fw-bold mb-0">${s.course ?? 'None'}</p>
+                </div>
             </div>
         `;
     }
