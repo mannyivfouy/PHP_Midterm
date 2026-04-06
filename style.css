@@ -1,0 +1,22 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.full-height {
+    min-height: calc(100vh - 2rem); /* 2rem accounts for p-3 padding on both sides */
+}
+
+.sidebar-card {
+    border-radius: 5px;
+    padding: 1rem;
+    min-height: calc(100vh - 2rem); /* ADD THIS */
+}
+
+.content-area {
+    overflow: auto;
+    border-radius: 15px;
+    padding: 1rem;
+    min-height: calc(100vh - 2rem);
+}

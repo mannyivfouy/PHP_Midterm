@@ -18,7 +18,7 @@ $page = $_GET['page'] ?? ['register'];
 </head>
 <body>
 <div class="container-fluid">
-    <div class="row full-height p-3">
+    <div class="row p-3" style="min-height: 100vh">
         <!-- Sidebar -->
         <div class="col-md-3 col-lg-2 d-flex">
             <div class="card shadow sidebar-card flex-fill">
