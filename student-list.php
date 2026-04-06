@@ -74,76 +74,95 @@ $students = json_decode($jsonFile, true) ?? [];
         const s = students[index];
 
         document.getElementById('modalBody').innerHTML = `
-            <div class="row g-3">
+        <div class="row g-3">
 
-                <div class="col-12">
-                    <h6 class="text-muted border-bottom pb-1">Personal Info</h6>
-                </div>
-                <div class="col-md-6">
-                    <small class="text-muted">First Name</small>
-                    <p class="fw-bold mb-0">${s.firstName}</p>
-                </div>
-                <div class="col-md-6">
-                    <small class="text-muted">Last Name</small>
-                    <p class="fw-bold mb-0">${s.lastName}</p>
-                </div>
-                <div class="col-md-6">
-                    <small class="text-muted">Email</small>
-                    <p class="fw-bold mb-0">${s.email}</p>
-                </div>
-                <div class="col-md-6">
-                    <small class="text-muted">Phone</small>
-                    <p class="fw-bold mb-0">${s.phone}</p>
-                </div>
-                <div class="col-md-6">
-                    <small class="text-muted">Gender</small>
-                    <p class="fw-bold mb-0">${s.gender}</p>
-                </div>
-                <div class="col-md-6">
-                    <small class="text-muted">Date of Birth</small>
-                    <p class="fw-bold mb-0">${s.dateOfBirth}</p>
-                </div>
+            <!-- Personal Info -->
+            <div class="col-12">
+                <h6 class="text-muted border-bottom pb-1">Personal Info</h6>
+            </div>
 
-                <div class="col-12">
-                    <h6 class="text-muted border-bottom pb-1 mt-2">Address Info</h6>
-                </div>
-                <div class="col-12">
-                    <small class="text-muted">Address</small>
-                    <p class="fw-bold mb-0">${s.address}</p>
-                </div>
-                <div class="col-md-6">
-                    <small class="text-muted">Country</small>
-                    <p class="fw-bold mb-0">${s.country}</p>
-                </div>
-                <div class="col-md-6">
-                    <small class="text-muted">City</small>
-                    <p class="fw-bold mb-0">${s.city}</p>
-                </div>
-                <div class="col-md-6">
-                    <small class="text-muted">State</small>
-                    <p class="fw-bold mb-0">${s.state}</p>
-                </div>
-                <div class="col-md-6">
-                    <small class="text-muted">Pin Code</small>
-                    <p class="fw-bold mb-0">${s.pinCode}</p>
+            <div class="col-12 d-flex gap-3 align-items-start">
+                <div class="row g-3 flex-grow-1">
+                    <div class="col-md-6">
+                        <small class="text-muted">First Name</small>
+                        <p class="fw-bold mb-0">${s.firstName}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <small class="text-muted">Last Name</small>
+                        <p class="fw-bold mb-0">${s.lastName}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <small class="text-muted">Email</small>
+                        <p class="fw-bold mb-0">${s.email}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <small class="text-muted">Phone</small>
+                        <p class="fw-bold mb-0">${s.phone}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <small class="text-muted">Gender</small>
+                        <p class="fw-bold mb-0">${s.gender}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <small class="text-muted">Date of Birth</small>
+                        <p class="fw-bold mb-0">${s.dateOfBirth}</p>
+                    </div>
                 </div>
 
-                <div class="col-12">
-                    <h6 class="text-muted border-bottom pb-1 mt-2">Other Info</h6>
-                </div>
-                <div class="col-md-6">
-                    <small class="text-muted">Hobbies</small>
-                    <p class="fw-bold mb-0">${s.hobbies.length ? s.hobbies.join(', ') : 'None'}</p>
-                </div>
-                <div class="col-md-6">
-                    <small class="text-muted">Qualification</small>
-                    <p class="fw-bold mb-0">${s.qualification.length ? s.qualification.join(', ') : 'None'}</p>
-                </div>
-                <div class="col-12">
-                    <small class="text-muted">Course Apply For</small>
-                    <p class="fw-bold mb-0">${s.course ?? 'None'}</p>
+                <div class="flex-shrink-0 text-center">
+                    <small class="text-muted d-block mb-1">Photo</small>
+                    ${s.image
+            ? `<img src="uploads/${s.image}" style="width:90px; height:90px; object-fit:cover; border-radius:8px; border: 0.5px solid #dee2e6;">`
+            : `<div style="width:90px; height:90px; border-radius:8px; background:#f1f3f5; border: 0.5px solid #dee2e6; display:flex; align-items:center; justify-content:center;">
+                              <i class="bi bi-person" style="font-size:36px; color:#adb5bd;"></i>
+                           </div>`
+        }
                 </div>
             </div>
-        `;
+
+            <!-- Address Info -->
+            <div class="col-12">
+                <h6 class="text-muted border-bottom pb-1 mt-2">Address Info</h6>
+            </div>
+            <div class="col-12">
+                <small class="text-muted">Address</small>
+                <p class="fw-bold mb-0">${s.address}</p>
+            </div>
+            <div class="col-md-6">
+                <small class="text-muted">Country</small>
+                <p class="fw-bold mb-0">${s.country}</p>
+            </div>
+            <div class="col-md-6">
+                <small class="text-muted">City</small>
+                <p class="fw-bold mb-0">${s.city}</p>
+            </div>
+            <div class="col-md-6">
+                <small class="text-muted">State</small>
+                <p class="fw-bold mb-0">${s.state}</p>
+            </div>
+            <div class="col-md-6">
+                <small class="text-muted">Pin Code</small>
+                <p class="fw-bold mb-0">${s.pinCode}</p>
+            </div>
+
+            <!-- Other Info -->
+            <div class="col-12">
+                <h6 class="text-muted border-bottom pb-1 mt-2">Other Info</h6>
+            </div>
+            <div class="col-md-6">
+                <small class="text-muted">Hobbies</small>
+                <p class="fw-bold mb-0">${s.hobbies.length ? s.hobbies.join(', ') : 'None'}</p>
+            </div>
+            <div class="col-md-6">
+                <small class="text-muted">Qualification</small>
+                <p class="fw-bold mb-0">${s.qualification.length ? s.qualification.join(', ') : 'None'}</p>
+            </div>
+            <div class="col-12">
+                <small class="text-muted">Course Apply For</small>
+                <p class="fw-bold mb-0">${s.course ?? 'None'}</p>
+            </div>
+
+        </div>
+    `;
     }
 </script>
