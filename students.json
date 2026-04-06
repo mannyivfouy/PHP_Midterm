@@ -1,186 +1,25 @@
 [
     {
-        "firstName": "Risa",
-        "lastName": "Sawyer",
-        "email": "mijaqu@mailinator.com",
-        "phone": "0928475894",
+        "firstName": "Hong",
+        "lastName": "Sovannara",
+        "email": "sovannara@gamil.com",
+        "phone": "092847697",
         "gender": "male",
-        "dateOfBirth": "2023-05-13",
-        "address": "Dolor consequuntur d",
-        "country": "Necessitatibus vero",
-        "city": "In distinctio Occae",
-        "state": "In dolor vel volupta",
-        "pinCode": "0012",
-        "image": "",
+        "dateOfBirth": "2004-04-01",
+        "address": "Phnom Penh, Cambodia, Earth",
+        "country": "Cambodia",
+        "city": "Phnom Penh",
+        "state": "Kambolq",
+        "pinCode": "1203",
+        "image": "1775453297_meme.jpg",
         "hobbies": [
-            "Singing",
-            "Sketching",
             "Gaming"
         ],
         "hobbyOther": "",
-        "qualification": [],
-        "submittedAt": "2026-04-04 06:18:12"
-    },
-    {
-        "firstName": "Tanner",
-        "lastName": "Hester",
-        "email": "milo@mailinator.com",
-        "phone": "094848393",
-        "gender": "male",
-        "dateOfBirth": "1971-03-05",
-        "address": "Voluptatem nemo omni",
-        "country": "Eu veniam nobis nem",
-        "city": "Sit ut minima eaque",
-        "state": "Ratione eiusmod amet",
-        "pinCode": "0938",
-        "image": "",
-        "hobbies": [
-            "Singing",
-            "Gaming",
-            "Other"
-        ],
-        "hobbyOther": "Qui laboriosam enim",
-        "qualification": []
-    },
-    {
-        "firstName": "Clinton",
-        "lastName": "Sears",
-        "email": "harynebuf@mailinator.com",
-        "phone": "099182398",
-        "gender": "male",
-        "dateOfBirth": "2005-10-15",
-        "address": "Quidem excepteur per",
-        "country": "Dolore saepe volupta",
-        "city": "Tempore dolore sint",
-        "state": "In aperiam enim aliq",
-        "pinCode": "0912",
-        "image": "",
-        "hobbies": [
-            "Drawing",
-            "Singing",
-            "Sketching"
-        ],
-        "hobbyOther": "",
-        "qualification": []
-    },
-    {
-        "firstName": "Len",
-        "lastName": "Kim",
-        "email": "xuceroko@mailinator.com",
-        "phone": "092837495",
-        "gender": "male",
-        "dateOfBirth": "1978-04-03",
-        "address": "Ut laborum Nesciunt",
-        "country": "Laboriosam cupidata",
-        "city": "Obcaecati facere con",
-        "state": "Quia excepteur liber",
-        "pinCode": "0021",
-        "image": "",
-        "hobbies": [
-            "Drawing",
-            "Singing",
-            "Sketching",
-            "Gaming"
-        ],
-        "hobbyOther": "",
-        "qualification": []
-    },
-    {
-        "firstName": "Casey",
-        "lastName": "Ray",
-        "email": "zipebubeg@mailinator.com",
-        "phone": "092384719",
-        "gender": "male",
-        "dateOfBirth": "2002-04-20",
-        "address": "Delectus aut totam",
-        "country": "Voluptas voluptas si",
-        "city": "Cupiditate consequun",
-        "state": "Molestiae veritatis",
-        "pinCode": "00939",
-        "image": "",
-        "hobbies": [
-            "Singing",
-            "Sketching",
-            "Gaming",
-            "Other"
-        ],
-        "hobbyOther": "Omnis dolor esse aut",
-        "qualification": [
-            "High School",
-            "Higher School"
-        ]
-    },
-    {
-        "firstName": "Melinda",
-        "lastName": "Holden",
-        "email": "hoholoc@mailinator.com",
-        "phone": "019249723432",
-        "gender": "male",
-        "dateOfBirth": "1988-01-24",
-        "address": "Quibusdam deserunt c",
-        "country": "In veniam ipsum co",
-        "city": "Consequat Aut aliqu",
-        "state": "Occaecat dolore qui",
-        "pinCode": "1233",
-        "image": "",
-        "hobbies": [
-            "Drawing",
-            "Singing",
-            "Sketching"
-        ],
-        "hobbyOther": "",
-        "qualification": [
-            "High School"
-        ]
-    },
-    {
-        "firstName": "Raya",
-        "lastName": "Alston",
-        "email": "pemygizik@mailinator.edu",
-        "phone": "0293847492",
-        "gender": "female",
-        "dateOfBirth": "1977-05-22",
-        "address": "Veniam provident q",
-        "country": "Deserunt obcaecati d",
-        "city": "Eaque autem maiores",
-        "state": "Perferendis consequa",
-        "pinCode": "9928",
-        "image": "",
-        "hobbies": [
-            "Drawing",
-            "Singing",
-            "Sketching",
-            "Other"
-        ],
-        "hobbyOther": "Voluptas in quas vel",
-        "qualification": [
-            "Higher School"
-        ]
-    },
-    {
-        "firstName": "Fiona",
-        "lastName": "Willis",
-        "email": "hevalimary@mailinator.com",
-        "phone": "092938492",
-        "gender": "female",
-        "dateOfBirth": "1981-10-22",
-        "address": "Ipsum nostrud rerum",
-        "country": "Nesciunt omnis sed",
-        "city": "Aut est molestiae a",
-        "state": "Esse aute porro vit",
-        "pinCode": "11123",
-        "image": "",
-        "hobbies": [
-            "Sketching",
-            "Gaming",
-            "Other"
-        ],
-        "hobbyOther": "Fly Moto",
         "qualification": [
             "High School (10th)",
-            "Higher School (12th)",
-            "Graduation (Bachelor)"
+            "Higher School (12th)"
         ],
-        "course": "MCA(Master of Computer Applications)"
+        "course": "B.Sc(Bachelor of Science)"
     }
 ]

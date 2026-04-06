@@ -31,7 +31,14 @@ if (isset($_POST['submit'])) {
     $city = trim($_POST['city'] ?? '');
     $state = trim($_POST['state'] ?? '');
     $pinCode = trim($_POST['pinCode'] ?? '');
-    $image = $_FILES['image']['name'] ?? '';
+    $imageName = '';
+    if (!empty($_FILES['image']['name'])) {
+        $uploadDir = 'uploads/';
+        if (!is_dir($uploadDir)) mkdir($uploadDir);
+        $imageName = time() . '_' . basename($_FILES['image']['name']);
+        move_uploaded_file($_FILES['image']['tmp_name'], $uploadDir . $imageName);
+    }
+    $image = $imageName;
     $hobbies = $_POST['hobbies'] ?? [];
     $hobbyOtherText = trim($_POST['hobbyOtherText'] ?? '');
     $qualification = $_POST['qualification'] ?? [];
